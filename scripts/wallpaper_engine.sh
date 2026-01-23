@@ -1,17 +1,22 @@
 #!/bin/bash
 
-# Pfade definieren
+# Pfade
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 WAYBAR_STYLE="$HOME/.config/waybar/style.css"
 LOG_FILE="$HOME/waybar_error.log"
 
-echo "--- Start Log: $(date) ---" > "$LOG_FILE"
+# Log-Datei komplett leeren und neu starten
+echo "--- NEUSTART LOG: $(date) ---" > "$LOG_FILE"
 
 # 1. Bild wählen
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | shuf -n 1)
-[ -z "$WALLPAPER" ] && echo "❌ Keine Bilder gefunden" >> "$LOG_FILE" && exit 1
+if [ -z "$WALLPAPER" ]; then
+    echo "❌ Fehler: Keine Bilder gefunden!" >> "$LOG_FILE"
+    exit 1
+fi
 
 # 2. Hintergrund & Farben
+echo "🖼️ Setze Wallpaper: $WALLPAPER" >> "$LOG_FILE"
 swww-daemon &> /dev/null &
 sleep 1
 swww img "$WALLPAPER" --transition-type wipe >> "$LOG_FILE" 2>&1
@@ -20,28 +25,33 @@ wal -i "$WALLPAPER" >> "$LOG_FILE" 2>&1
 # 3. Pfade fixen
 sed -i "s|__HOME__|$HOME|g" "$WAYBAR_STYLE" 2>> "$LOG_FILE"
 
-# 4. Waybar Start-Loop (Fix für Broken Pipe)
+# 4. DIE SCHLEIFE (Das muss im Log auftauchen!)
 echo "🔄 Starte Waybar-Überwachung..." >> "$LOG_FILE"
 
-for i in {1..5}; do
+for i in {1..10}; do
+    echo "-------------------------------------" >> "$LOG_FILE"
+    echo "🚀 STARTVERSUCH NR. $i um $(date)" >> "$LOG_FILE"
+
+    # Alte Waybar Reste killen
     killall -9 waybar 2>/dev/null
     sleep 1
 
-    # Tastatur auf Deutsch erzwingen
-    if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-        hyprctl keyword input:kb_layout de >> "$LOG_FILE" 2>&1
-    fi
+    # Tastatur auf DE
+    hyprctl keyword input:kb_layout de >> "$LOG_FILE" 2>&1
 
-    echo "🚀 Startversuch $i..." >> "$LOG_FILE"
-    (waybar 2>> "$LOG_FILE" &)
+    # Waybar starten
+    waybar 2>> "$LOG_FILE" &
 
-    sleep 5
+    # 10 Sekunden warten und prüfen
+    sleep 10
+
     if pgrep -x "waybar" > /dev/null; then
-        echo "✅ Waybar läuft nach Versuch $i!" >> "$LOG_FILE"
+        echo "✅ ERFOLG: Waybar läuft stabil in Versuch $i!" >> "$LOG_FILE"
         break
     else
-        echo "⚠️ Versuch $i fehlgeschlagen (Broken Pipe?), probiere es erneut..." >> "$LOG_FILE"
-        sleep 2
+        echo "⚠️ FEHLSCHLAG: Versuch $i abgestürzt (Broken Pipe)." >> "$LOG_FILE"
+        echo "Warte kurz vor dem nächsten Versuch..." >> "$LOG_FILE"
+        sleep 5
     fi
 done
 

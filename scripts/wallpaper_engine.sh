@@ -21,9 +21,12 @@ sed -i "s|__HOME__|$HOME|g" "$WAYBAR_STYLE"
 sed -i "s|__HOME__|$HOME|g" "$SWAYOSD_STYLE"
 
 # 5. Alles aktualisieren
+# Wir stellen sicher, dass Waybar wirklich sauber beendet wird
 killall waybar 2>/dev/null
-sleep 1
-waybar &
-swayosd-client --reload-style  # SwayOSD Farben neu laden
+sleep 2
+
+# Startet Waybar im Hintergrund und leitet Ausgaben um
+waybar > /dev/null 2>&1 &
+swayosd-client --reload-style
 
 echo "✅ Alles erledigt! Design angepasst an: $(basename "$WALLPAPER")"

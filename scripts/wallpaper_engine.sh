@@ -18,6 +18,7 @@ sed -i "s|__HOME__|$HOME|g" "$WAYBAR_STYLE" 2>> "$LOG_FILE"
 # 2. Die Waybar-Schleife (Hintergrund-Prozess)
 (
     for i in {1..20}; do
+        # --- HIER DIESEN BLOCK ANPASSEN/ERSETZEN ---
         echo "🚀 Versuch $i: Starte Waybar..." >> "$LOG_FILE"
 
         # Tastatur-Layout auf Deutsch erzwingen
@@ -25,10 +26,13 @@ sed -i "s|__HOME__|$HOME|g" "$WAYBAR_STYLE" 2>> "$LOG_FILE"
 
         # Radikal aufräumen
         killall -9 waybar 2>/dev/null
-        sleep 2
+
+        # WICHTIG: Hier geben wir dem System 3-5 Sekunden Pause
+        sleep 5
 
         # Waybar starten
         waybar 2>> "$LOG_FILE" &
+        # ------------------------------------------
 
         # 8 Sekunden warten: Bleibt sie offen?
         sleep 8

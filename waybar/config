@@ -1,10 +1,10 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 55, // Erhöht auf 55 gegen das Abschneiden
-    "margin-top": 10,
-    "margin-left": 15,
-    "margin-right": 15,
+    "height": 60, // Erhöht auf 55 gegen das Abschneiden
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
     "spacing": 10,
 
     "modules-left": ["custom/launch", "hyprland/workspaces"],

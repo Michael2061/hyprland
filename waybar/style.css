@@ -5,12 +5,14 @@
 @define-color rosie-red #e91e63;
 @define-color rosie-dark #880e4f;
 
+/* 1. Globaler Fix für Zeilenhöhe und Schrift */
 * {
   font-family: "JetBrains Mono Nerd Font", sans-serif;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 0;
+  line-height: 1; /* Zwingt die Zeilenhöhe auf das Minimum gegen Abschneiden */
 }
 
 window#waybar {
@@ -31,17 +33,24 @@ background: rgba(255, 255, 255, 0.1);
 border-bottom: 3px solid @rosie-red;
 }
 
-/* --- STATS MODULE (CPU, RAM, TEMP) --- */
+/* 2. Gemeinsames Styling für ALLE Module (Fix für Margins) */
+#network, #cpu, #memory, #temperature, #pulseaudio, #clock, #tray, #custom-power, #custom-music, #custom-launch {
+padding: 0 10px;
+margin-top: 2px;    /* Kleinerer Wert oben damit nichts anstößt */
+margin-bottom: 2px; /* Kleinerer Wert unten damit nichts abgeschnitten wird */
+}
+
+/* 3. Spezielles Styling für Stats (Hintergrund-Schimmer) */
 #cpu, #memory, #temperature {
 color: @rosie-red;
 background: rgba(255, 255, 255, 0.05);
 border-radius: 8px;
-margin: 4px 2px;
-padding: 0 10px;
+margin-left: 2px;
+margin-right: 2px;
 }
 
 #memory {
-color: #ffffff; /* Weiß für bessere Lesbarkeit der Zahlen */
+color: #ffffff;
 border-bottom: 2px solid @rosie-dark;
 }
 
@@ -53,13 +62,14 @@ animation-direction: alternate;
 animation-iteration-count: infinite;
 }
 
-/* --- STANDARD MODULE --- */
-#network, #custom-music, #pulseaudio, #clock, #tray, #custom-launch {
-padding: 0 12px;
-margin: 4px 0;
+/* 4. Fix für das Netzwerk-Modul (Upload/Download Platz) */
+#network {
+color: @rosie-red;
+margin-top: 0;
+margin-bottom: 0;
 }
 
-#network, #custom-music, #custom-launch {
+#custom-music, #custom-launch {
 color: @rosie-red;
 }
 
@@ -68,10 +78,14 @@ color: #ffffff;
 border-bottom: 2px solid @rosie-red;
 }
 
-/* --- POWER BUTTON FIX --- */
+#tray {
+color: #ffffff;
+}
+
+/* 5. Finaler Power Button Fix */
 #custom-power {
 color: @rosie-red;
-font-size: 18px; /* Etwas kleiner für Stabilität */
+font-size: 18px; /* Etwas kleiner für die Stabilität */
 padding-right: 15px;
 padding-left: 10px;
 margin-top: 0;

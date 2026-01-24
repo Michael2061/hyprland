@@ -13,20 +13,23 @@
   min-height: 0;
   margin: 0;
   padding: 0;
-  vertical-align: middle;
 }
 
+/* --- DIE BAR (DYNAMISCH) --- */
 window#waybar {
   background: rgba(15, 15, 25, 0.8);
   border: 2px solid @rosie-red;
   border-radius: 12px;
   color: #ffffff;
+  /* Dieser Befehl sorgt dafür, dass nichts unten anstößt */
+  padding-bottom: 4px;
 }
 
 /* --- WORKSPACES --- */
 #workspaces button {
 padding: 0 10px;
 color: #ffffff;
+margin-bottom: 4px;
 }
 
 #workspaces button.active {
@@ -35,59 +38,48 @@ background: rgba(255, 255, 255, 0.1);
 border-bottom: 3px solid @rosie-red;
 }
 
-/* --- STATS (CPU, RAM, TEMP) --- */
-#cpu, #memory, #temperature {
-color: @rosie-red;
-background: rgba(255, 255, 255, 0.05);
-border-radius: 8px;
+/* --- MODULE ALLGEMEIN --- */
+#network, #cpu, #memory, #temperature, #pulseaudio, #clock, #tray, #custom-music, #custom-launch {
 padding: 0 10px;
-margin-bottom: 8px; /* Zieht auch diese Module leicht hoch */
+margin-top: 4px;
+margin-bottom: 6px; /* Sicherheitsabstand nach unten */
 }
 
-#memory {
-color: #ffffff;
-border-bottom: 2px solid @rosie-dark;
-}
-
-/* --- STANDARD MODULE (Uhr, Netzwerk, Lautstärke) --- */
-/* Dies ersetzt deinen alten "MODULE ALLGEMEIN" Block */
-#network, #pulseaudio, #clock, #tray, #custom-launch, #custom-music {
-padding: 0 12px;
-margin-top: 0px;
-margin-bottom: 8px; /* Zieht die Icons deutlich nach oben weg vom unteren Rand */
-}
-
-/* --- NETZWERK SPEZIFISCH --- */
+/* --- NETZWERK FIX (DYNAMISCHE BREITE) --- */
 #network {
 color: @rosie-red;
-min-width: 160px;
+/* Keine feste Breite mehr, damit "Michael..." nicht abgeschnitten wird */
+min-width: 0;
+padding: 0 15px;
 }
 
-/* --- POWER BUTTON (Ganz rechts) --- */
-/* Dies ersetzt deinen alten "POWER BUTTON" Block */
+/* --- POWER BUTTON (Ganz Rechts Rettung) --- */
 #custom-power {
 color: @rosie-red;
-font-size: 20px;     /* Etwas größer, damit es gut aussieht */
-padding-left: 20px;  /* Schiebt das Icon vom Tray weg */
-padding-right: 30px; /* Schiebt das Icon weg vom rechten Rand der Bar */
-margin-top: -5px;    /* Zieht das Icon aktiv nach oben in die Mitte */
-margin-bottom: 5px;  /* Erzeugt Gegendruck von unten */
+font-size: 18px;
+/* Viel Platz nach rechts, damit die Bar-Rundung nichts schluckt */
+padding-left: 15px;
+padding-right: 35px;
+margin-right: 10px;
+margin-bottom: 6px;
 }
 
 #custom-power:hover {
 color: #ffffff;
 background: rgba(233, 30, 99, 0.2);
-border-radius: 10px;
+border-radius: 8px;
 }
 
-/* --- SONSTIGES --- */
+/* --- STATS & SONSTIGES --- */
+#cpu, #memory, #temperature {
+color: @rosie-red;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 8px;
+}
+
 #clock {
 color: #ffffff;
 border-bottom: 2px solid @rosie-red;
-}
-
-#custom-music, #custom-launch {
-color: @rosie-red;
 }
 
 #temperature.critical {

@@ -3,7 +3,7 @@
 @define-color rosie-red #e91e63;
 @define-color rosie-dark #880e4f;
 
-/* --- GLOBALER RESET (Wichtig gegen Abschneiden) --- */
+/* --- GLOBALER RESET --- */
 * {
   font-family: "JetBrains Mono Nerd Font", sans-serif;
   font-size: 14px;
@@ -35,17 +35,13 @@ background: rgba(255, 255, 255, 0.1);
 border-bottom: 3px solid @rosie-red;
 }
 
-/* --- MODULE ALLGEMEIN --- */
-#network, #cpu, #memory, #temperature, #pulseaudio, #clock, #tray, #custom-music, #custom-launch {
-padding: 0 12px;
-margin: 5px 2px; /* Gibt etwas Luft nach oben/unten */
-}
-
-/* --- STATS (Mit Schimmer) --- */
+/* --- STATS (CPU, RAM, TEMP) --- */
 #cpu, #memory, #temperature {
 color: @rosie-red;
 background: rgba(255, 255, 255, 0.05);
 border-radius: 8px;
+padding: 0 10px;
+margin-bottom: 8px; /* Zieht auch diese Module leicht hoch */
 }
 
 #memory {
@@ -53,26 +49,35 @@ color: #ffffff;
 border-bottom: 2px solid @rosie-dark;
 }
 
-/* --- NETZWERK FIX (Breite & Farbe) --- */
-#network {
-color: @rosie-red;
-min-width: 160px; /* Genug Platz für Upload/Download */
+/* --- STANDARD MODULE (Uhr, Netzwerk, Lautstärke) --- */
+/* Dies ersetzt deinen alten "MODULE ALLGEMEIN" Block */
+#network, #pulseaudio, #clock, #tray, #custom-launch, #custom-music {
+padding: 0 12px;
+margin-top: 0px;
+margin-bottom: 8px; /* Zieht die Icons deutlich nach oben weg vom unteren Rand */
 }
 
-/* --- POWER BUTTON (Der "Anti-Abschneiden" Fix) --- */
+/* --- NETZWERK SPEZIFISCH --- */
+#network {
+color: @rosie-red;
+min-width: 160px;
+}
+
+/* --- POWER BUTTON (Ganz rechts) --- */
+/* Dies ersetzt deinen alten "POWER BUTTON" Block */
 #custom-power {
 color: @rosie-red;
-font-size: 18px;
-padding-left: 15px;
-padding-right: 20px;
-margin-top: -2px;    /* Zieht das Icon leicht nach oben */
-margin-bottom: 2px;  /* Verhindert das Aufsitzen unten */
+font-size: 20px;     /* Etwas größer, damit es gut aussieht */
+padding-left: 20px;  /* Schiebt das Icon vom Tray weg */
+padding-right: 30px; /* Schiebt das Icon weg vom rechten Rand der Bar */
+margin-top: -5px;    /* Zieht das Icon aktiv nach oben in die Mitte */
+margin-bottom: 5px;  /* Erzeugt Gegendruck von unten */
 }
 
 #custom-power:hover {
 color: #ffffff;
 background: rgba(233, 30, 99, 0.2);
-border-radius: 8px;
+border-radius: 10px;
 }
 
 /* --- SONSTIGES --- */

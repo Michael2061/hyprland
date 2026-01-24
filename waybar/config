@@ -1,11 +1,11 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 60, // Bleib bei 60, das gibt den Icons Platz zum Atmen
+    "height": 65,
     "margin-top": 10,
     "margin-left": 15,
-    "margin-right": 35,
-    "spacing": 15,
+    "margin-right": 45,
+    "spacing": 18,
 
     "modules-left": ["custom/launch", "hyprland/workspaces"],
     "modules-center": ["custom/music"],
@@ -17,6 +17,7 @@
         "network",
         "clock",
         "tray",
+        "custom/usb",
         "custom/power"
     ],
 
@@ -83,6 +84,14 @@
         "format": "󰈸",
         "on-click": "rofi -show drun",
         "tooltip": false
+    },
+
+    "custom/usb": {
+        "format": " ",
+        "exec": "lsblk -nr | grep -q 'part /run/media' && echo ' ' || echo ''",
+        "interval": 5,
+        "tooltip": true,
+        "tooltip-format": "USB-Stick verbunden"
     },
 
     "custom/power": {

@@ -1,6 +1,10 @@
 /* Importiert die Farben, die wallpaper_engine.sh/wal generiert */
 @import url("file:///home/__USER__/.cache/wal/colors-waybar.css");
 
+/* Akzentfarben: Ein elegantes Rosie-Rot/Weinrot */
+@define-color rosie-red #e91e63;
+@define-color rosie-dark #880e4f;
+
 * {
   font-family: "JetBrains Mono Nerd Font", sans-serif;
   font-size: 14px;
@@ -11,7 +15,7 @@
 
 window#waybar {
   background: rgba(15, 15, 25, 0.8); /* Dunkler, transparenter Hintergrund */
-  border: 2px solid @color2; /* Akzentfarbe vom Wallpaper */
+  border: 2px solid @rosie-red;    /* Rahmen in Rosie-Rot statt @color2 */
   border-radius: 12px;
   color: #ffffff;
 }
@@ -23,9 +27,9 @@ background: transparent;
 }
 
 #workspaces button.active {
-color: @color2;
+color: @rosie-red;
 background: rgba(255, 255, 255, 0.1);
-border-bottom: 3px solid @color2;
+border-bottom: 3px solid @rosie-red;
 }
 
 #workspaces button:hover {
@@ -42,32 +46,37 @@ background: transparent;
 }
 
 #network {
-color: #e91e63;
+color: @rosie-red;
 }
 
 #custom-music {
-color: #e91e63;
+color: @rosie-red;
+}
+
+#pulseaudio {
+color: #ffffff; /* Weißer Kontrast für Lautstärke */
+}
+
+#cpu {
+color: @rosie-dark;
+}
+
+#memory {
+color: @rosie-dark;
 }
 
 #clock {
 color: #ffffff;
 font-weight: bold;
-}
-
-#pulseaudio {
-color: #ffffff;
-}
-
-#memory {
-color: #c2185b;
-}
-
-#cpu {
-color: #880e4f;
+border-bottom: 2px solid @rosie-red; /* Der rote Akzent-Strich unter der Uhr */
 }
 
 #custom-launch {
 font-size: 18px;
-color: @color1;
+color: @rosie-red;
 margin-left: 5px;
+}
+
+#tray {
+color: #ffffff;
 }

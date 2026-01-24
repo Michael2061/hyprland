@@ -26,8 +26,7 @@
     ],
 
     "custom/launcher": {
-        "exec": "echo ''",
-        "format": "{}",
+        "format": "   ", // Das CachyOS/Linux Symbol
         "on-click": "rofi -show drun",
         "tooltip": false
     },
@@ -58,13 +57,9 @@
 
     "network": {
         "interval": 2,
-        "format-wifi": "  {essid}",
-        "format-ethernet": "󰈀  {ifname}",
-        "format-disconnected": "󰖪  Offline",
-        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
-        "tooltip-format-disconnected": "Disconnected"
+        "format-wifi": "   {essid}  {bandwidthUpBytes}  {bandwidthDownBytes} ",
+        "format-ethernet": " 󰈀   {bandwidthUpBytes}  {bandwidthDownBytes} ",
+        "format-disconnected": " 󰖪  Offline "
     },
 
     "pulseaudio": {
@@ -74,9 +69,8 @@
     },
 
     "custom/power": {
-        "exec": "echo '󰐦'",
-        "format": "{}",
+        "format": " 󰐦  ", // Das Icon mit Leerzeichen wie von dir entdeckt!
         "on-click": "wlogout",
         "tooltip": false
-    },
+    }
 }

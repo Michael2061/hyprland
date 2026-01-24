@@ -34,6 +34,7 @@ window#waybar {
 #clock           { color: #ffffff !important; /* c6 */ }
 #pulseaudio      { color: #ffffff !important; /* c4 */ }
 #custom-power    { color: #ffffff !important; /* c1 */ font-size: 20px; margin-right: 15px; }
+/* cX */
 
 /* Spezial-Effekt für Power Hover */
 #custom-power:hover { color: @foreground !important; background: @color1; border-radius: 8px; }

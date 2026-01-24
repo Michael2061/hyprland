@@ -78,6 +78,11 @@ color: @color5;
 padding: 0 10px;
 }
 
+#cpu, #memory, #network, #pulseaudio {
+padding: 0 6px; /* Etwas weniger Padding, damit alles reinpasst */
+margin: 0 2px;
+}
+
 /* Power Button - Ganz rechts mit deinem Fix */
 #custom-power {
 color: @rosie-red;

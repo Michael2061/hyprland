@@ -45,7 +45,8 @@
 
     "cpu": {
         "interval": 2,
-        "format": "   {usage}% "
+        "format": "   {usage}% ",
+        "tooltip": true // Im Tooltip stehen die Cores meistens trotzdem automatisch drin
     },
 
     "memory": {
@@ -54,11 +55,10 @@
     },
 
     "network": {
-        "format-wifi": "   {essid} ",
-        "format-ethernet": " 󰈀  {ifname} ",
-        "format-disconnected": " 󰖪  Offline ",
-        "tooltip-format": "Up: {bandwidthUpBytes} Down: {bandwidthDownBytes}",
-        "interval": 2
+        "interval": 2,
+        "format-wifi": "   {essid}  {bandwidthUpBytes}  {bandwidthDownBytes} ",
+        "format-ethernet": " 󰈀   {bandwidthUpBytes}  {bandwidthDownBytes} ",
+        "format-disconnected": " 󰖪  Offline "
     },
 
     "pulseaudio": {

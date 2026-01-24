@@ -24,46 +24,17 @@ window#waybar {
 
 /* --- ROSIE-RED MODULE (LOGO, MUSIK, UHR, NETZWERK, POWER) --- */
 
-#custom-launcher {
-color: @rosie-red !important;
-font-size: 18px;
-margin-left: 10px;
-text-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
-}
+#custom-launcher { color: @rosie-red !important; font-size: 18px; margin-left: 10px; }
 
-#custom-music, #custom-music label {
-color: @rosie-red !important;
-background: rgba(233, 30, 99, 0.1);
-border-radius: 8px;
-margin: 5px 2px;
-padding: 0 12px;
-}
+#custom-music, #custom-music label { color: @rosie-red !important; background: rgba(233, 30, 99, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
 
-#clock, #clock label {
-color: @rosie-red !important;
-background: rgba(233, 30, 99, 0.1);
-border-radius: 8px;
-margin: 5px 2px;
-padding: 0 12px;
-}
+#clock, #clock label { color: @rosie-red !important; background: rgba(233, 30, 99, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
 
-#network, #network label {
-color: @rosie-red !important;
-padding: 0 10px;
-}
+#network { color: @rosie-red !important; padding: 0 10px; }
 
-#custom-power {
-color: @rosie-red !important;
-font-size: 20px;
-margin-right: 15px;
-text-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
-}
+#custom-power { color: @rosie-red !important; font-size: 20px; margin-right: 15px; }
 
-#custom-power:hover {
-color: #ffffff !important;
-background: @rosie-red;
-border-radius: 8px;
-}
+#custom-power:hover { color: #ffffff !important; }
 
 /* --- PYWAL MODULE (CPU, RAM, AUDIO) --- */
 

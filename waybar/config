@@ -24,14 +24,19 @@
         "max-length": 50
     },
 
-    "cpu": { "format": " {usage}%" },
-    "memory": { "format": " {used}GB" }, // DOPPELT!
+    "cpu": {
+        "format": " {usage}%"
+    },
+
+    "memory": {
+        "format": "󰍛 {used}GB"
+    },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
         "format-icons": { "default": ["", "", ""] }
-    } // DOPPELT!,
+    },
 
     "clock": {
         "format": "{:%H:%M}",

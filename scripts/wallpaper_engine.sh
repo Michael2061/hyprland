@@ -57,24 +57,24 @@ waybar -c "$WAYBAR_CONFIG" -s "$WAYBAR_STYLE" &
 # 4. SDDM (LOGIN SCREEN) AKTUALISIEREN
 echo "🌙 Synchronisiere SDDM mit Rosie-Design..."
 
-# 5. Das aktuelle Hintergrundbild kopieren
+# 5. Hintergrundbilder für SDDM und Hyprlock vorbereiten
 sudo cp "$WALLPAPER" /usr/share/sddm/themes/sugar-candy/Backgrounds/current_bg.jpg
+cp "$WALLPAPER" "$HOME/.cache/current_wallpaper.png"
 
 # 6. Die Farben und das Profilbild-Setting in die .user Datei schreiben
 SDDM_USER_CONF="/usr/share/sddm/themes/sugar-candy/theme.conf.user"
-sudo cp "$WALLPAPER" /usr/share/sddm/themes/sugar-candy/Backgrounds/current_bg.jpg
 
 echo "[General]
 background=Backgrounds/current_bg.jpg
-mainColor=\"$COLOR4\"
-accentColor=\"$COLOR1\"
-faceColor=\"$COLOR2\"
-fontColor=\"$FOREGROUND\"
-selectionColor=\"$COLOR4\"
-HourFormat=\"HH:mm\"
-DateFormat=\"dddd, d. MMMM yyyy\"
+mainColor=$COLOR4
+accentColor=$COLOR1
+faceColor=$COLOR2
+fontColor=$FOREGROUND
+selectionColor=$COLOR4
+HourFormat=HH:mm
+DateFormat=dddd, d. MMMM yyyy
 DateFontSize=22
 HourFontSize=64
 showRoundUserIcon=true
 borderWidth=3
-font=\"JetBrains Mono Nerd Font\"" | sudo tee "$SDDM_USER_CONF" > /dev/null
+font=JetBrains Mono Nerd Font" | sudo tee "$SDDM_USER_CONF" > /dev/null

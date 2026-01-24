@@ -80,3 +80,15 @@ margin-left: 5px;
 #tray {
 color: #ffffff;
 }
+
+#custom-power {
+color: @rosie-red; /* Unser schönes Rosie-Rot */
+font-size: 20px;
+padding-right: 15px;
+padding-left: 10px;
+}
+
+#custom-power:hover {
+color: #ffffff;
+text-shadow: 0 0 10px @rosie-red; /* Ein leichter Glüheffekt */
+}

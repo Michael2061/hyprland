@@ -3,6 +3,8 @@
     "position": "top",
     "height": 50,
     "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
     "spacing": 10,
 
     "modules-left": ["custom/launch", "hyprland/workspaces", "network"],
@@ -30,12 +32,12 @@
         "max-length": 50
     },
 
-    "memory": {
-        "format": "󰍛 {used}GB"
-    },
-
     "cpu": {
         "format": " {usage}%"
+    },
+
+    "memory": {
+        "format": "󰍛 {used}GB"
     },
 
     "pulseaudio": {

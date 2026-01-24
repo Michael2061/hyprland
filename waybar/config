@@ -4,26 +4,10 @@
     "height": 50,
     "width": "auto",
     "margin": 0,
-    "spacing": 0,
 
-    "modules-left": [
-        "hyprland/workspaces",
-        "custom/music"
-    ],
-
-    "modules-center": [
-        "clock"
-    ],
-
-    "modules-right": [
-        "cpu",
-        "memory",
-        "temperature",
-        "pulseaudio",
-        "network",
-        "tray",
-        "custom/power"
-    ],
+    "modules-left": ["hyprland/workspaces", "custom/music"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "network", "tray", "custom/power", "custom/spacer"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -37,47 +21,25 @@
 
     "custom/music": {
         "format": "󰝚  {}",
-        "escape": true,
-        "return-type": "json",
-        "max-length": 40,
         "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "return-type": "json",
         "on-click": "playerctl play-pause",
-        "on-click-right": "hyprctl dispatch exec [float;size 800 500] ncspot"
-    },
-
-    "cpu": { "format": "  {usage}%", "interval": 2 },
-    "memory": { "format": "  {}%", "interval": 2 },
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
-    },
-
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "󰈀 {bandwidthDownBytes}",
-        "interval": 2
-    },
-
-    "clock": {
-        "format": "  {:%H:%M  󰃭 %d.%m.%Y}"
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟 Muted",
-        "format-icons": { "default": ["", "", ""] },
-        "on-click": "pavucontrol"
+        "max-length": 35
     },
 
     "custom/power": {
         "format": "⏻",
-        "on-click": "wlogout",
+        "on-click": "wlogout"
+    },
+
+    "custom/spacer": {
+        "format": " ", // Ein Leerzeichen als Platzhalter
         "tooltip": false
     },
 
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
-    }
+    "network": { "format-wifi": " " },
+    "clock": { "format": "  {:%H:%M}" },
+    "cpu": { "format": "  {usage}%" },
+    "memory": { "format": "  {}%" },
+    "tray": { "spacing": 10 }
 }

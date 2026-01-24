@@ -1,6 +1,5 @@
 @import url("file:///home/__USER__/.cache/wal/colors-waybar.css");
 @define-color rosie-red #e91e63;
-@define-color rosie-dark #880e4f;
 
 * {
   font-family: "JetBrains Mono Nerd Font", sans-serif;
@@ -8,56 +7,43 @@
   font-weight: bold;
   border: none;
   border-radius: 0;
-  margin: 0;
-  padding: 0;
 }
 
 window#waybar {
-  background: rgba(15, 15, 25, 0.9);
+  background: rgba(15, 15, 25, 0.95);
   border-bottom: 2px solid @rosie-red;
-  color: #ffffff;
 }
 
-/* FIX LINKS: Erzwungener Abstand für das erste Icon */
+/* LINKS FIX: Damit die Workspaces wieder da sind */
 #workspaces {
-margin-left: 25px;
-padding-left: 10px;
+margin-left: 15px;
 }
 
 #workspaces button {
-padding: 0 12px;
+padding: 0 10px;
 color: #ffffff;
+min-width: 20px; /* Garantiert, dass das Icon Platz hat */
 }
 
 #workspaces button.active {
 color: @rosie-red;
 }
 
-/* MUSIK MODUL */
-#custom-music {
-color: @rosie-red;
-padding: 0 20px;
-}
-
-/* RECHTE MODULE */
-#cpu, #memory, #temperature, #pulseaudio, #network, #clock, #tray {
-padding: 0 12px;
-}
-
-#cpu, #memory, #temperature {
-color: @rosie-red;
-}
-
-/* FIX RECHTS: Power Button Schutzraum */
+/* RECHTS FIX: Der "Space" nach rechts */
 #custom-power {
 color: @rosie-red;
 font-size: 20px;
-/*padding: Oben Rechts Unten Links */
-padding: 0 45px 0 20px;
-margin-right: 10px;
+margin-right: 40px; /* DAS HIER schiebt den Button 40px vom rechten Rand weg */
+padding: 0 10px;
 }
 
-#custom-power:hover {
-color: #ffffff;
-background: rgba(233, 30, 99, 0.2);
+/* Der unsichtbare Spacer ganz rechts */
+#custom-spacer {
+padding-right: 20px;
 }
+
+#cpu, #memory, #network, #pulseaudio, #clock, #tray, #custom-music {
+padding: 0 12px;
+}
+
+#custom-music { color: @rosie-red; }

@@ -12,74 +12,22 @@
 /* Grundlegende Einstellungen */
 * {
   border: none;
-  font-family: "JetBrains Mono Nerd Font", "Roboto", "Arial";
+  font-family: "JetBrains Mono Nerd Font", sans-serif;
   font-size: 14px;
   font-weight: bold;
 }
 
-/* Die Hauptbar komplett unsichtbar machen */
-window#waybar {
-  background: transparent;
-}
-
-/* Gemeinsames Design für alle "Pillen" */
-#workspaces,
-#network,
-#custom-music,
-#cpu,
-#memory,
-#pulseaudio,
-#clock,
-#tray,
-#custom-launch {
-background: transparent;    /* Hintergrund entfernen */
+#workspaces, #network, #custom-music, #cpu, #memory, #pulseaudio, #clock, #tray, #custom-launch {
+background: transparent;
 color: #ffffff;
-border: none;               /* Rahmen entfernen */
+border: none;
 padding: 2px 10px;
-margin: 0px 2px;            /* Engerer Abstand ohne Rahmen */
+margin: 0px 2px;
 }
 
-/* Spezielle Pillen-Farben */
-
-/* CachyOS Launch Icon */
-#custom-launch {
-  color: #00ff99; /* Cachy-Grün */
-  font-size: 18px;
-  padding-right: 20px;
-}
-
-/* Aktiver Workspace */
-#workspaces button.active {
-  color: #00ff99;
-  background: rgba(0, 255, 153, 0.1);
-  border-radius: 10px;
-}
-
-/* ncspot Musik-Pille */
-#custom-music {
-  color: #33ccff; /* Blau */
-  border: 1px solid rgba(51, 204, 255, 0.3);
-}
-
-/* Netzwerk (Download Speed) */
-#network {
-  color: #ffcc66; /* Orange für Speed */
-}
-
-/* System-Werte */
-#cpu {
-  color: #ff5e5e;
-}
-#memory {
-  color: #f173c1;
-}
-#pulseaudio {
-  color: #90b1ff;
-}
-
-/* Uhrzeit */
+/* Kasten um die Uhr entfernen, falls gewünscht */
 #clock {
-  color: #ffffff;
-  background: rgba(0, 255, 153, 0.2); /* Hervorgehobene Pille */
-  border: 1px solid #00ff99;
+color: #ffffff;
+background: transparent;
+border: none;
 }

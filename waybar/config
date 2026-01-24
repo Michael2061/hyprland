@@ -3,19 +3,11 @@
     "position": "top",
     "height": 50,
     "margin-top": 8,
-    "margin-left": 10,
-    "margin-right": 10,
     "spacing": 10,
 
     "modules-left": ["custom/launch", "hyprland/workspaces", "network"],
     "modules-center": ["custom/music"],
     "modules-right": ["cpu", "memory", "pulseaudio", "tray", "clock"],
-
-    "hyprland/workspaces": {
-        "format": "{name}",
-        "on-click": "activate",
-        "all-outputs": true
-    },
 
     "network": {
         "format-wifi": "  {bandwidthDownBits}",
@@ -23,14 +15,15 @@
         "interval": 2
     },
 
-"custom/music": {
-    "format": "󰝚  {}",
-    "escape": true,
-    "interval": 5,
-    "exec": "playerctl metadata --format '{{ title }}' 2>/dev/null || echo 'Kein Player aktiv'",
-    "on-click": "playerctl play-pause",
-    "max-length": 50
-},
+    "memory": {
+        "format": "󰍛 {used}GB"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": { "default": ["", "", ""] }
+    },
 
     "clock": {
         "format": "{:%H:%M}",

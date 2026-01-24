@@ -1,45 +1,34 @@
 #!/bin/bash
 
-# Pfade (Nutzen $HOME, damit es bei jedem User klappt)
-WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+# Pfade
+WAYBAR_CONFIG="$HOME/.config/waybar/config"
 WAYBAR_STYLE="$HOME/.config/waybar/style.css"
 LOG_FILE="$HOME/waybar_error.log"
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 
-# 1. Log-Datei neu erstellen
-echo "--- System-Start: $(date) ---" > "$LOG_FILE"
+# 1. Log neu starten
+echo "--- Start: $(date) ---" > "$LOG_FILE"
 
-# 2. Prüfen, ob das Skript bereits läuft
-if pgrep -x "wallpaper_engine.sh" | grep -qv $$; then
-    echo "Skript läuft bereits." >> "$LOG_FILE"
-    exit 1
-fi
-
-# 3. Wallpaper & Farben
-pgrep swww-daemon > /dev/null || swww-daemon &
-sleep 0.5
-
+# 2. Wallpaper auswählen & Farben generieren
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | shuf -n 1)
-
-if [ -z "$WALLPAPER" ]; then
-    echo "FEHLER: Kein Bild in $WALLPAPER_DIR" >> "$LOG_FILE"
-    exit 1
-fi
-
 swww img "$WALLPAPER" --transition-type wipe &
 wal -i "$WALLPAPER" -q
 
-# --- DYNAMISCHE PFAD-ANPASSUNG ---
-# Wir suchen nach __USER__, __SUER__ oder __HOME__ und ersetzen es durch deinen echten Pfad
-sed -i "s|__USER__|$USER|g" "$WAYBAR_STYLE"
-sed -i "s|__SUER__|$USER|g" "$WAYBAR_STYLE"
+# 3. CSS DYNAMISCH REPARIEREN
+# Wir erstellen eine Kopie der Vorlage, falls sie fehlt
+if [ ! -f "${WAYBAR_STYLE}.bak" ]; then
+    cp "$WAYBAR_STYLE" "${WAYBAR_STYLE}.bak"
+fi
+
+# Wir nehmen immer die saubere Vorlage und schreiben sie in die echte style.css
+# Dabei ersetzen wir __USER__ durch deinen echten Namen
+sed "s|__USER__|$USER|g" "${WAYBAR_STYLE}.bak" > "$WAYBAR_STYLE"
 sed -i "s|__HOME__|$HOME|g" "$WAYBAR_STYLE"
-# --------------------------------
 
-# 4. Tastatur auf DE
-hyprctl keyword input:kb_layout de
-
-# 5. Waybar NEU STARTEN
+# 4. Waybar sicher neu starten
 killall waybar 2>/dev/null
-waybar &
+# Wir warten kurz, bis der alte Prozess wirklich weg ist
+sleep 0.5
+waybar -c "$WAYBAR_CONFIG" -s "$WAYBAR_STYLE" &
 
-echo "Setup erfolgreich für User $USER: $WALLPAPER" >> "$LOG_FILE"
+echo "Setup erfolgreich für $USER: $WALLPAPER" >> "$LOG_FILE"

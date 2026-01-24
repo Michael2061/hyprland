@@ -21,52 +21,35 @@ window#waybar {
   color: @foreground;
 }
 
-/* --- DYNAMISCHE MODULE (Nutzen jetzt Pywal Farben) --- */
-
-/* CachyOS Logo nutzt jetzt eine helle Akzentfarbe von Pywal */
-#custom-launcher {
-color: @color4 !important;
-font-size: 18px;
-margin-left: 10px;
+/* 1. ZENTRALER FIX:
+ *  Hier zwingen wir alle Module (und deren interne Label/Icons),
+ *  die Farbe zu übernehmen, die wir ihnen unten zuweisen.
+ */
+#custom-launcher, #custom-launcher label,
+#custom-music, #custom-music label,
+#clock, #clock label,
+#network, #network label,
+#cpu, #cpu label,
+#memory, #memory label,
+#pulseaudio, #pulseaudio label,
+#custom-power, #custom-power label {
+color: inherit;
 }
 
-/* Musik & Uhr nutzen Pywal Farben und einen passenden Hintergrund */
-#custom-music {
-color: @color3 !important;
-background: rgba(255, 255, 255, 0.1);
-border-radius: 8px;
-margin: 5px 2px;
-padding: 0 12px;
-}
+/* 2. FARB-ZUWEISUNG (Kompakt zentralisiert):
+ *  Hier legst du fest, welches Modul welche Pywal-Farbe bekommt.
+ */
+#custom-launcher { color: @color4 !important; font-size: 18px; margin-left: 10px; }
+#custom-music    { color: @color3 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
+#clock           { color: @color6 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
+#network         { color: @color2 !important; }
+#cpu             { color: @color1 !important; }
+#memory          { color: @color5 !important; }
+#pulseaudio      { color: @color4 !important; }
+#custom-power    { color: @color1 !important; font-size: 20px; margin-right: 15px; }
 
-#clock {
-color: @color6 !important;
-background: rgba(255, 255, 255, 0.1);
-border-radius: 8px;
-margin: 5px 2px;
-padding: 0 12px;
-}
-
-/* Netzwerk, CPU, RAM & Audio in verschiedenen Pywal Farben */
-#network {
-color: @color2 !important;
-}
-#cpu { color: @color1; }
-#memory { color: @color5; }
-#pulseaudio { color: @color4; }
-
-/* Power Button */
-#custom-power {
-color: @color1 !important;
-font-size: 20px;
-margin-right: 15px;
-}
-
-#custom-power:hover {
-color: @foreground !important;
-background: @color1;
-border-radius: 8px;
-}
+/* Spezial-Effekt für Power Hover */
+#custom-power:hover { color: @foreground !important; background: @color1; border-radius: 8px; }
 
 /* --- GEMEINSAME EINSTELLUNGEN --- */
 

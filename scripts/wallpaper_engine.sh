@@ -5,21 +5,19 @@ WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 WAYBAR_STYLE="$HOME/.config/waybar/style.css"
 LOG_FILE="$HOME/waybar_error.log"
 
-# 1. Log-Datei bei jedem Start NEU erstellen (löscht alten Inhalt)
-echo "--- System-Start: $(date) ---" > "$LOG_FILE"
+# 1. Log-Datei bei jedem Start NEU erstellen
+echo "--- System-Start: $(date) ---\" > "$LOG_FILE"
 
-# 2. Prüfen, ob das Skript bereits läuft (Sperre)
+# 2. Prüfen, ob das Skript bereits läuft
 if pgrep -x "wallpaper_engine.sh" | grep -qv $$; then
     echo "Skript läuft bereits, breche ab." >> "$LOG_FILE"
     exit 1
 fi
 
 # 3. Wallpaper & Farben
-# Prüfen ob swww-daemon läuft
 pgrep swww-daemon > /dev/null || swww-daemon &
 sleep 0.5
 
-# Zufälliges Bild finden
 WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | shuf -n 1)
 
 if [ -z "$WALLPAPER" ]; then
@@ -29,7 +27,11 @@ fi
 
 swww img "$WALLPAPER" --transition-type wipe &
 wal -i "$WALLPAPER" -q
-sed -i "s|__HOME__|$HOME|g" "$WAYBAR_STYLE"
+
+# --- HIER IST DIE GEÄNDERTE ZEILE ---
+# Wir nutzen $USER (Systemvariable), um __USER__ im CSS zu ersetzen
+sed -i "s|__USER__|$USER|g" "$WAYBAR_STYLE"
+# ------------------------------------
 
 # 4. Tastatur auf DE
 hyprctl keyword input:kb_layout de

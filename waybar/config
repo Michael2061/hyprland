@@ -1,54 +1,72 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 50,
-    "margin-top": 8,
+    "height": 44,
+    "margin-top": 10,
+    "margin-left": 15,
+    "margin-right": 15,
     "spacing": 10,
 
     "modules-left": ["custom/launch", "hyprland/workspaces", "network"],
     "modules-center": ["custom/music"],
     "modules-right": ["cpu", "memory", "pulseaudio", "tray", "clock"],
 
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "all-outputs": true,
+        "sort-by-number": true
+    },
+
     "network": {
         "format-wifi": "  {bandwidthDownBits}",
         "format-ethernet": "󰈀  {bandwidthDownBits}",
-        "interval": 2
+        "interval": 2,
+        "tooltip-format": "{essid} {ipaddr}"
     },
 
     "custom/music": {
         "format": "󰝚  {}",
         "escape": true,
-        "interval": 5,
-        "exec": "playerctl metadata --format '{{ title }}' 2>/dev/null || echo 'Kein Player aktiv'",
+        "interval": 2,
+        "exec": "playerctl metadata --format '{{ title }}' 2>/dev/null || echo 'Silent'",
         "on-click": "playerctl play-pause",
         "max-length": 50
     },
 
-    "cpu": {
-        "format": " {usage}%"
+    "memory": {
+        "format": "󰍛 {used}GB",
+        "interval": 5
     },
 
-    "memory": {
-        "format": "󰍛 {used}GB"
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 5
     },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
-        "format-icons": { "default": ["", "", ""] }
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
     },
 
     "clock": {
-        "format": "{:%H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "󰃰  {:%H:%M}",
+        "format-alt": "󰃭  {:%d.%m.%Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
 
     "custom/launch": {
         "format": "󰈸",
-        "on-click": "rofi -show drun"
+        "on-click": "rofi -show drun",
+        "tooltip": false
     },
 
     "tray": {
+        "icon-size": 18,
         "spacing": 10
     }
 }

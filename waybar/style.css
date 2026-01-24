@@ -21,15 +21,15 @@ window#waybar {
   border: 2px solid @rosie-red;
   border-radius: 12px;
   color: #ffffff;
-  /* Dieser Befehl sorgt dafür, dass nichts unten anstößt */
-  padding-bottom: 4px;
+  /* Wir geben der ganzen Bar unten 10px "Leere", damit nichts aufsitzt */
+  padding-bottom: 10px;
 }
 
 /* --- WORKSPACES --- */
 #workspaces button {
 padding: 0 10px;
 color: #ffffff;
-margin-bottom: 4px;
+margin-bottom: 5px;
 }
 
 #workspaces button.active {
@@ -38,39 +38,40 @@ background: rgba(255, 255, 255, 0.1);
 border-bottom: 3px solid @rosie-red;
 }
 
-/* --- MODULE ALLGEMEIN --- */
-#network, #cpu, #memory, #temperature, #pulseaudio, #clock, #tray, #custom-music, #custom-launch {
-padding: 0 10px;
-margin-top: 4px;
-margin-bottom: 6px; /* Sicherheitsabstand nach unten */
-}
-
-/* --- NETZWERK FIX (DYNAMISCHE BREITE) --- */
+/* --- NETZWERK FIX (ALLES ANZEIGEN) --- */
 #network {
 color: @rosie-red;
-/* Keine feste Breite mehr, damit "Michael..." nicht abgeschnitten wird */
-min-width: 0;
-padding: 0 15px;
+/* WICHTIG: Keine min-width und keine max-width! */
+padding: 0 20px;
+margin-bottom: 10px;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 8px;
 }
 
-/* --- POWER BUTTON (Ganz Rechts Rettung) --- */
+/* --- POWER BUTTON (DER "SICHERHEITS-ABSTAND") --- */
 #custom-power {
 color: @rosie-red;
-font-size: 18px;
-/* Viel Platz nach rechts, damit die Bar-Rundung nichts schluckt */
-padding-left: 15px;
-padding-right: 35px;
-margin-right: 10px;
-margin-bottom: 6px;
+font-size: 22px;      /* Schön groß */
+/* Wir geben dem Button extrem viel Platz nach rechts innerhalb der Bar */
+padding-left: 20px;
+padding-right: 50px;
+/* Wir ziehen ihn aktiv 10 Pixel hoch */
+margin-top: -10px;
+margin-bottom: 10px;
 }
 
 #custom-power:hover {
 color: #ffffff;
-background: rgba(233, 30, 99, 0.2);
-border-radius: 8px;
+background: rgba(233, 30, 99, 0.3);
+border-radius: 10px;
 }
 
-/* --- STATS & SONSTIGES --- */
+/* --- RESTE (Stats & Co) --- */
+#cpu, #memory, #temperature, #pulseaudio, #clock, #tray {
+padding: 0 12px;
+margin-bottom: 10px; /* Alles einheitlich hochziehen */
+}
+
 #cpu, #memory, #temperature {
 color: @rosie-red;
 background: rgba(255, 255, 255, 0.05);
@@ -80,13 +81,4 @@ border-radius: 8px;
 #clock {
 color: #ffffff;
 border-bottom: 2px solid @rosie-red;
-}
-
-#temperature.critical {
-color: #ff0000;
-animation: blink 0.5s alternate infinite;
-}
-
-@keyframes blink {
-  to { background-color: rgba(255, 0, 0, 0.5); }
 }

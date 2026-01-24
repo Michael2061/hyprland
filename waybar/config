@@ -5,7 +5,7 @@
     "width": "auto",
     "margin-top": 8,
     "margin-left": 12,
-    "margin-right": 12,
+    "margin-right": 50,
     "spacing": 10,
 
     "modules-left": ["custom/launch", "hyprland/workspaces"],
@@ -36,7 +36,6 @@
         "format-disconnected": "󰖪  Disconnected",
         "interval": 2,
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-        "max-length": 50
     },
 
     "custom/music": {

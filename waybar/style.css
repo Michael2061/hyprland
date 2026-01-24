@@ -1,3 +1,4 @@
+/* --- FARBEN --- */
 @import url("file:///home/__USER__/.cache/wal/colors-waybar.css");
 @define-color rosie-red #e91e63;
 
@@ -7,43 +8,64 @@
   font-weight: bold;
   border: none;
   border-radius: 0;
+  margin: 0;
+  padding: 0;
 }
 
 window#waybar {
   background: rgba(15, 15, 25, 0.95);
   border-bottom: 2px solid @rosie-red;
+  color: #ffffff;
 }
 
-/* LINKS FIX: Damit die Workspaces wieder da sind */
+/* LINKS: Workspaces wieder sichtbar machen */
 #workspaces {
-margin-left: 15px;
+margin-left: 10px;
+padding-left: 10px;
 }
 
 #workspaces button {
 padding: 0 10px;
 color: #ffffff;
-min-width: 20px; /* Garantiert, dass das Icon Platz hat */
+min-width: 30px;
 }
 
 #workspaces button.active {
 color: @rosie-red;
+border-bottom: 3px solid @rosie-red;
 }
 
-/* RECHTS FIX: Der "Space" nach rechts */
-#custom-power {
+#custom-music {
 color: @rosie-red;
-font-size: 20px;
-margin-right: 40px; /* DAS HIER schiebt den Button 40px vom rechten Rand weg */
-padding: 0 10px;
+padding: 0 15px;
+margin-left: 10px;
 }
 
-/* Der unsichtbare Spacer ganz rechts */
-#custom-spacer {
-padding-right: 20px;
+/* MITTE */
+#clock {
+padding: 0 15px;
 }
 
-#cpu, #memory, #network, #pulseaudio, #clock, #tray, #custom-music {
+/* RECHTS */
+#cpu, #memory, #temperature, #pulseaudio, #network, #tray {
 padding: 0 12px;
 }
 
-#custom-music { color: @rosie-red; }
+/* DER POWER BUTTON FIX */
+#custom-power {
+color: @rosie-red;
+font-size: 20px;
+/* Wir geben ihm massiv Platz nach rechts, um das Abschneiden zu verhindern */
+margin-right: 40px;
+padding-left: 15px;
+padding-right: 15px;
+}
+
+/* Das leere Spacer-Modul ganz rechts als zusätzlicher Schutz */
+#custom-padding {
+padding-right: 20px;
+}
+
+#cpu, #memory, #temperature {
+color: @rosie-red;
+}

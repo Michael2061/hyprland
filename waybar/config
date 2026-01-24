@@ -26,7 +26,8 @@
     ],
 
     "custom/launcher": {
-        "format": "<span foreground='#e91e63'>  </span>", // Das CachyOS/Linux Symbol
+        "exec": "echo ''",
+        "format": " {} ",
         "on-click": "rofi -show drun",
         "tooltip": false
     },
@@ -69,7 +70,8 @@
     },
 
     "custom/power": {
-        "format": " 󰐦  ", // Das Icon mit Leerzeichen wie von dir entdeckt!
+        "exec": "echo '󰐦'",
+        "format": " {} ",
         "on-click": "wlogout",
         "tooltip": false
     }

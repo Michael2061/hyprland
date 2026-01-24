@@ -21,32 +21,19 @@ window#waybar {
   color: @foreground;
 }
 
-/* 1. ZENTRALER FIX:
- *  Hier zwingen wir alle Module (und deren interne Label/Icons),
- *  die Farbe zu übernehmen, die wir ihnen unten zuweisen.
+/* --- ZENTRALER FARB-FIX ---
+ * Wir sprechen die Module direkt an. Da Launcher und Power jetzt
+ * per 'exec' laufen, brauchen sie kein 'label' extra im CSS.
  */
-#custom-launcher, #custom-launcher label,
-#custom-music, #custom-music label,
-#clock, #clock label,
-#network, #network label,
-#cpu, #cpu label,
-#memory, #memory label,
-#pulseaudio, #pulseaudio label,
-#custom-power, #custom-power label {
-color: inherit;
-}
 
-/* 2. FARB-ZUWEISUNG (Kompakt zentralisiert):
- *  Hier legst du fest, welches Modul welche Pywal-Farbe bekommt.
- */
-#custom-launcher { color: @color4 !important; font-size: 18px; margin-left: 10px; }
-#custom-music    { color: @color3 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
-#clock           { color: @color6 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
-#network         { color: @color2 !important; }
-#cpu             { color: @color1 !important; }
-#memory          { color: @color5 !important; }
-#pulseaudio      { color: @color4 !important; }
-#custom-power    { color: @color1 !important; font-size: 20px; margin-right: 15px; }
+#custom-launcher, #custom-launcher label { color: @color4 !important; font-size: 18px; margin-left: 10px; }
+#custom-music,    #custom-music label    { color: @color3 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
+#clock,           #clock label           { color: @color6 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
+#network,         #network label         { color: @color2 !important; }
+#cpu,             #cpu label             { color: @color1 !important; }
+#memory,          #memory label          { color: @color5 !important; }
+#pulseaudio,      #pulseaudio label      { color: @color4 !important; }
+#custom-power,    #custom-power label    { color: @color1 !important; font-size: 20px; margin-right: 15px; }
 
 /* Spezial-Effekt für Power Hover */
 #custom-power:hover { color: @foreground !important; background: @color1; border-radius: 8px; }

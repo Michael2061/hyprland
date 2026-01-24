@@ -13,6 +13,9 @@
   border: none;
   border-radius: 0;
   line-height: 1; /* Zwingt die Zeilenhöhe auf das Minimum gegen Abschneiden */
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
 }
 
 window#waybar {
@@ -67,7 +70,7 @@ animation-iteration-count: infinite;
 color: @rosie-red;
 margin-top: 0;
 margin-bottom: 0;
-min-width: 120px; /* Verhindert das Flackern bei wechselnden Speed-Werten */
+min-width: 180px; /* Verhindert das Flackern bei wechselnden Speed-Werten */
 padding: 0 15px;  /* Gibt dem Text innen genug Platz */
 }
 
@@ -87,14 +90,18 @@ color: #ffffff;
 /* 5. Finaler Power Button Fix */
 #custom-power {
 color: @rosie-red;
-font-size: 18px;
-padding-left: 20px;  /* Mehr Abstand zum Tray hin */
-padding-right: 10px; /* Kleiner Puffer zum Bar-Ende */
-margin-right: 5px;   /* Zusätzlicher Sicherheitsabstand */
+font-size: 16px;      /* Etwas kleiner, damit es sicher in die 60px passt */
+padding-left: 15px;
+padding-right: 20px; /* Mehr Platz zum rechten Rand */
+margin-top: -4px;    /* Zieht das Icon nach OBEN */
+margin-bottom: 4px;  /* Gleicht es unten aus */
+min-width: 40px;     /* Gibt dem Knopf ein eigenes Feld */
 }
 
 #custom-power:hover {
 color: #ffffff;
+background: rgba(233, 30, 99, 0.2); /* Leichter Rosie-Hintergrund beim Drüberfahren */
+border-radius: 8px;
 }
 
 @keyframes blink {

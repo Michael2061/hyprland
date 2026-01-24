@@ -4,8 +4,8 @@
     "height": 60, // Bleib bei 60, das gibt den Icons Platz zum Atmen
     "margin-top": 10,
     "margin-left": 15,
-    "margin-right": 40, // Erhöht von 15 auf 25, damit es weiter rechts "reingeht"
-    "spacing": 12,
+    "margin-right": 35,
+    "spacing": 15,
 
     "modules-left": ["custom/launch", "hyprland/workspaces"],
     "modules-center": ["custom/music"],

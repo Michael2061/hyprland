@@ -1,21 +1,19 @@
-/* Importiert die Farben, die wallpaper_engine.sh/wal generiert */
+/* --- FARBEN & IMPORTE --- */
 @import url("file:///home/__USER__/.cache/wal/colors-waybar.css");
-
-/* Akzentfarben: Ein elegantes Rosie-Rot/Weinrot */
 @define-color rosie-red #e91e63;
 @define-color rosie-dark #880e4f;
 
-/* 1. Globaler Fix für Zeilenhöhe und Schrift */
+/* --- GLOBALER RESET (Wichtig gegen Abschneiden) --- */
 * {
   font-family: "JetBrains Mono Nerd Font", sans-serif;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 0;
-  line-height: 1; /* Zwingt die Zeilenhöhe auf das Minimum gegen Abschneiden */
-  vertical-align: middle;
+  min-height: 0;
   margin: 0;
   padding: 0;
+  vertical-align: middle;
 }
 
 window#waybar {
@@ -25,8 +23,9 @@ window#waybar {
   color: #ffffff;
 }
 
+/* --- WORKSPACES --- */
 #workspaces button {
-padding: 0 8px;
+padding: 0 10px;
 color: #ffffff;
 }
 
@@ -36,20 +35,17 @@ background: rgba(255, 255, 255, 0.1);
 border-bottom: 3px solid @rosie-red;
 }
 
-/* 2. Gemeinsames Styling für ALLE Module (Fix für Margins) */
-#network, #cpu, #memory, #temperature, #pulseaudio, #clock, #tray, #custom-power, #custom-music, #custom-launch {
-padding: 0 15px;    /* Erhöht von 10 auf 15 für mehr inneren Abstand */
-margin-top: 5px;    /* Etwas mehr Platz nach oben */
-margin-bottom: 5px; /* Etwas mehr Platz nach unten */
+/* --- MODULE ALLGEMEIN --- */
+#network, #cpu, #memory, #temperature, #pulseaudio, #clock, #tray, #custom-music, #custom-launch {
+padding: 0 12px;
+margin: 5px 2px; /* Gibt etwas Luft nach oben/unten */
 }
 
-/* 3. Spezielles Styling für Stats (Hintergrund-Schimmer) */
+/* --- STATS (Mit Schimmer) --- */
 #cpu, #memory, #temperature {
 color: @rosie-red;
 background: rgba(255, 255, 255, 0.05);
 border-radius: 8px;
-margin-left: 2px;
-margin-right: 2px;
 }
 
 #memory {
@@ -57,55 +53,43 @@ color: #ffffff;
 border-bottom: 2px solid @rosie-dark;
 }
 
-#temperature.critical {
-color: #ff0000;
-animation-name: blink;
-animation-duration: 0.5s;
-animation-direction: alternate;
-animation-iteration-count: infinite;
-}
-
-/* 4. Fix für das Netzwerk-Modul (Upload/Download Platz) */
+/* --- NETZWERK FIX (Breite & Farbe) --- */
 #network {
 color: @rosie-red;
-margin-top: 0;
-margin-bottom: 0;
-min-width: 180px; /* Verhindert das Flackern bei wechselnden Speed-Werten */
-padding: 0 15px;  /* Gibt dem Text innen genug Platz */
+min-width: 160px; /* Genug Platz für Upload/Download */
+}
+
+/* --- POWER BUTTON (Der "Anti-Abschneiden" Fix) --- */
+#custom-power {
+color: @rosie-red;
+font-size: 18px;
+padding-left: 15px;
+padding-right: 20px;
+margin-top: -2px;    /* Zieht das Icon leicht nach oben */
+margin-bottom: 2px;  /* Verhindert das Aufsitzen unten */
+}
+
+#custom-power:hover {
+color: #ffffff;
+background: rgba(233, 30, 99, 0.2);
+border-radius: 8px;
+}
+
+/* --- SONSTIGES --- */
+#clock {
+color: #ffffff;
+border-bottom: 2px solid @rosie-red;
 }
 
 #custom-music, #custom-launch {
 color: @rosie-red;
 }
 
-#clock {
-color: #ffffff;
-border-bottom: 2px solid @rosie-red;
-}
-
-#tray {
-color: #ffffff;
-}
-
-/* 5. Finaler Power Button Fix */
-#custom-power {
-color: @rosie-red;
-font-size: 16px;      /* Etwas kleiner, damit es sicher in die 60px passt */
-padding-left: 15px;
-padding-right: 20px; /* Mehr Platz zum rechten Rand */
-margin-top: -4px;    /* Zieht das Icon nach OBEN */
-margin-bottom: 4px;  /* Gleicht es unten aus */
-min-width: 40px;     /* Gibt dem Knopf ein eigenes Feld */
-}
-
-#custom-power:hover {
-color: #ffffff;
-background: rgba(233, 30, 99, 0.2); /* Leichter Rosie-Hintergrund beim Drüberfahren */
-border-radius: 8px;
+#temperature.critical {
+color: #ff0000;
+animation: blink 0.5s alternate infinite;
 }
 
 @keyframes blink {
-  to {
-    background-color: rgba(255, 0, 0, 0.5);
-  }
+  to { background-color: rgba(255, 0, 0, 0.5); }
 }

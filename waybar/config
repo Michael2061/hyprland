@@ -19,10 +19,16 @@
     },
 
     "network": {
-        "format-wifi": "  {bandwidthDownBits}",
-        "format-ethernet": "󰈀  {bandwidthDownBits}",
+        "format-wifi": "  {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-ethernet": "󰈀   {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": "󰖪  Disconnected",
         "interval": 2,
-        "tooltip-format": "{essid} {ipaddr}"
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
     },
 
     "custom/music": {

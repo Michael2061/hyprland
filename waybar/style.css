@@ -41,6 +41,10 @@ margin: 4px 0;
 background: transparent;
 }
 
+#network {
+color: @color4;
+}
+
 #custom-music {
 color: @color4;
 }

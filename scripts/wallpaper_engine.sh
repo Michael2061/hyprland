@@ -79,8 +79,3 @@ showRoundUserIcon=true
 borderWidth=3
 font=JetBrains Mono Nerd Font" | sudo tee "$SDDM_USER_CONF" > /dev/null
 
-# --- DYNAMISCHER PFAD-FIX ---
-# Ersetzt den Platzhalter oder einen alten Pfad durch deinen echten Home-Pfad
-HYPR_CONF="$HOME/.config/hypr/hyprlock.conf"
-sed -i "s|path = .*rosie_avatar.png|path = $HOME/.config/hypr/rosie_avatar.png|g" "$HYPR_CONF"
-sed -i "s|path = .*current_wallpaper.png|path = $HOME/.cache/current_wallpaper.png|g" "$HYPR_CONF"

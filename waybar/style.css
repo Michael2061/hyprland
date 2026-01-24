@@ -1,60 +1,62 @@
-/* Importiert die Farben von deinem Wallpaper (Pywal) */
+/* 1. Dynamische Farben von Pywal (WICHTIG: Ganz oben!) */
 @import url("file:///home/__USER__/.cache/wal/colors-waybar.css");
 
-/* Deine feste Akzentfarbe für den Rahmen bleibt */
-@define-color rosie-red #e91e63;
+/* 2. Deine festen Rosie-Theme Farben */
+@define-color rosie-pink #e91e63;
+@define-color rosie-light #ff4081;
+/* Wir können hier @color0 aus Pywal für den Hintergrund nutzen, falls gewünscht */
+@define-color bg-dark rgba(30, 30, 46, 0.8);
 
 * {
-  font-family: "JetBrains Mono Nerd Font", sans-serif;
-  font-size: 13px;
-  font-weight: bold;
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  line-height: 1.2;
+  font-family: "JetBrains Mono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 window#waybar {
-  background: rgba(15, 15, 25, 0.9);
-  border: 2px solid @rosie-red;
-  border-radius: 12px;
-  color: @foreground;
+  background-color: @bg-dark; /* Hier kannst du auch @background nutzen */
+  border-bottom: 2px solid @rosie-pink;
+  color: @foreground; /* Nutzt Textfarbe von Pywal */
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
-/* --- ZENTRALER FARB-FIX ---
- * Wir sprechen die Module direkt an. Da Launcher und Power jetzt
- * per 'exec' laufen, brauchen sie kein 'label' extra im CSS.
- */
-
-#custom-launcher, #custom-launcher label { color: @color4 !important; font-size: 18px; margin-left: 10px; }
-#custom-music,    #custom-music label    { color: @color3 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
-#clock,           #clock label           { color: @color6 !important; background: rgba(255, 255, 255, 0.1); border-radius: 8px; margin: 5px 2px; padding: 0 12px; }
-#network,         #network label         { color: @color2 !important; }
-#cpu,             #cpu label             { color: @color1 !important; }
-#memory,          #memory label          { color: @color5 !important; }
-#pulseaudio,      #pulseaudio label      { color: @color4 !important; }
-#custom-power,    #custom-power label    { color: @color1 !important; font-size: 20px; margin-right: 15px; }
-
-/* Spezial-Effekt für Power Hover */
-#custom-power:hover { color: @foreground !important; background: @color1; border-radius: 8px; }
-
-/* --- GEMEINSAME EINSTELLUNGEN --- */
-
-#cpu, #memory, #network, #pulseaudio {
-padding: 0 8px;
-margin: 0 2px;
-}
-
+/* Workspaces */
 #workspaces button {
-padding: 0 8px;
+padding: 0 5px;
+background-color: transparent;
 color: @foreground;
+border-bottom: 3px solid transparent;
 }
 
 #workspaces button.active {
-color: @color4;
-border-bottom: 2px solid @color4;
+color: @rosie-pink;
+border-bottom: 3px solid @rosie-pink;
+background-color: rgba(233, 30, 99, 0.1);
 }
 
-#tray {
+#workspaces button:hover {
+background: rgba(233, 30, 99, 0.2);
+color: @rosie-light;
+}
+
+/* Icons & Module */
+#clock, #battery, #cpu, #memory, #disk, #temperature, #backlight,
+#network, #pulseaudio, #wireplumber, #tray {
 padding: 0 10px;
+}
+
+/* Diese Icons leuchten IMMER in Rosie-Pink, egal welches Wallpaper */
+#pulseaudio, #network, #cpu, #memory, #temperature, #clock {
+color: @rosie-pink;
+}
+
+/* Spezialfarben für Batterie */
+#battery.charging { color: #26A65B; }
+#battery.critical:not(.charging) {
+color: #f53c3c;
+animation-name: blink;
+animation-duration: 0.5s;
+animation-timing-function: linear;
+animation-iteration-count: infinite;
+animation-direction: alternate;
 }

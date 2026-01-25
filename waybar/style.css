@@ -35,23 +35,6 @@ window#waybar {
 
 /* --- ICONS & MODULE FARBEN (FIXED) --- */
 
-/* Diese drei Module explizit einfärben */
-#custom-launcher,
-#network,
-#custom-power {
-color: #e91e63 !important;
-}
-
-/* Falls das Icon im Netzwerk-Modul weiß bleibt */
-#network {
-color: #e91e63 !important;
-}
-
-/* Sicherstellen, dass das CachyOS Icon pink wird */
-#custom-launcher {
-color: #e91e63 !important;
-}
-
 /* Ganz links: Launcher */
 #custom-launcher {
     color: @rosie-pink;

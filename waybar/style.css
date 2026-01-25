@@ -1,9 +1,11 @@
 /* 1. Dynamische Farben von Pywal */
 @import url("file:///home/username/.cache/wal/colors-waybar.css");
 
-/* 2. Deine festen Rosie-Theme Farben */
-@define-color rosie-pink #e91e63;
-@define-color bg-glass rgba(30, 30, 46, 0.7);
+/* 2. Erweiterte Rosie-Theme Farben (aus dem Wallpaper extrahiert) */
+@define-color rosie-pink #e91e63;   /* Deine Basis */
+@define-color rosie-glow #ff006e;   /* Das giftige Leuchten aus dem Bild */
+@define-color rosie-dark #1a050d;   /* Tiefer Schatten für Kontrast */
+@define-color bg-glass rgba(26, 5, 13, 0.8); /* Dunkleres Glas passend zum Bild */
 
 /* Grundeinstellungen */
 * {
@@ -13,62 +15,55 @@
   border-radius: 0;
 }
 
-/* Das Hauptfenster der Waybar */
+/* Das Hauptfenster der Waybar mit leichtem Glow-Rand */
 window#waybar {
   background-color: @bg-glass;
   border-radius: 15px;
-  border: 1px solid rgba(233, 30, 99, 0.3);
+  border: 1px solid rgba(255, 0, 110, 0.4); /* Glow-Rand */
   color: @rosie-pink;
 }
 
-/* Workspaces */
+/* Workspaces mit aktivem Glow */
 #workspaces button {
 color: @rosie-pink;
 padding: 0 5px;
 }
 
 #workspaces button.active {
-color: @rosie-pink;
-background-color: rgba(233, 30, 99, 0.2);
+color: #ffffff;
+background-color: rgba(255, 0, 110, 0.3);
+box-shadow: inset 0 0 10px @rosie-glow; /* Inneres Leuchten */
 border-radius: 10px;
 }
 
 /* --- STANDARD MODULE (Uhr, CPU, Musik etc.) --- */
-#custom-music,
-#clock,
-#cpu,
-#memory,
-#pulseaudio,
-#tray {
+#custom-music, #clock, #cpu, #memory, #pulseaudio, #tray {
 color: @rosie-pink !important;
 padding: 0 10px;
 }
 
-/* --- ROSIE MODUL FIX (Die Spezial-Behandlung) --- */
+/* --- ROSIE MODUL FIX (Spezial-Behandlung) --- */
 
-/* Wir sprechen direkt die 'label'-Eigenschaft an, das ist am sichersten */
+/* Zwingt Icons und Bandbreite in die neue Akzentfarbe */
 #custom-launcher label,
 #custom-power label,
 #network label,
 #network small {
-color: @rosie-pink !important;
+color: @rosie-glow !important;
 }
 
-/* Falls das Icon im Launcher/Power kein Label ist, nehmen wir das Haupt-ID */
-#custom-launcher,
-#custom-power {
-color: @rosie-pink !important;
+#custom-launcher, #custom-power {
+color: @rosie-glow !important;
 font-size: 18px;
 padding: 0 15px;
+text-shadow: 0 0 5px @rosie-glow; /* Macht die Icons "radioaktiv" */
 }
 
-/* Das Netzwerk-Modul inklusive der Bandbreite */
 #network {
-color: @rosie-pink !important;
+color: @rosie-glow !important;
 padding: 0 10px;
 }
 
-/* Sonderregel: Nur wenn Offline, dann Rot */
 #network.disconnected {
-color: #f44336 !important;
+color: #f44336 !important; /* Behält das Warn-Rot */
 }

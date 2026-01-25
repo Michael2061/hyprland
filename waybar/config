@@ -11,7 +11,7 @@
     "modules-center": ["custom/music", "clock"],
     "modules-right": ["cpu", "memory", "network", "pulseaudio", "tray", "custom/power"],
 
-   "custom/launcher": {
+    "custom/launcher": {
         "format": "   ",
         "on-click": "rofi -show drun -theme ~/.config/rofi/rosie.rasi",
         "tooltip": false
@@ -51,7 +51,7 @@
     "network": {
         "format-wifi": "  {essid} <small>󰇚 {bandwidthDownBits} 󰕒 {bandwidthUpBits}</small>",
         "format-ethernet": " 󰈀 {ifname} <small>󰇚 {bandwidthDownBits} 󰕒 {bandwidthUpBits}</small> ",
-        "format-disconnected": "<span color='#f44336'>󰖪 Offline ",
+        "format-disconnected": "<span color='#f44336'>󰖪 Offline</span>",
         "interval": 2,
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
         "tooltip-format-wifi": "{essid} ({signaldBm}dBm) ",
@@ -73,6 +73,7 @@
 
     "tray": {
         "icon-size": 18,
-        "spacing": 10
-    },
+        "spacing": 10,
+        "show-passive-icons": true
+    }
 }

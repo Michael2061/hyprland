@@ -8,14 +8,11 @@
     "spacing": 5,
 
     "modules-left": ["custom/launcher", "hyprland/workspaces"],
-
     "modules-center": ["custom/music", "clock"],
-
     "modules-right": ["cpu", "memory", "network", "pulseaudio", "tray", "custom/power"],
 
     "custom/launcher": {
         "format": "   ",
-        "class": "rosie-text",
         "on-click": "rofi -show drun -theme ~/.config/rofi/rosie.rasi",
         "tooltip": false
     },
@@ -55,7 +52,6 @@
         "format-wifi": "  {essid}",
         "format-ethernet": "󰈀  {ifname}",
         "format-disconnected": "󰖪  Offline",
-        "class": "rosie-text",
         "interval": 5
     },
 
@@ -68,7 +64,6 @@
     "custom/power": {
         "format": " ",
         "on-click": "wlogout",
-        "class": "rosie-text",
         "tooltip": false
     }
 }

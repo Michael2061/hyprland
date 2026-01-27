@@ -1,11 +1,25 @@
+configuration {
+    modi: "drun,run";
+    show-icons: true;
+    terminal: "kitty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+}
+
+/* Hier binden wir die Pywal-Farben ein */
+@import "~/.cache/wal/colors-rofi-pywal.rasi"
+
 * {
-    /* Rosie Farbpalette */
-    bg-col:  #1e1e2e;           /* Dunkler Hintergrund */
-    bg-col-light: #2e2e3e;
-    border-col: #e91e63;       /* Das Rosie-Rot */
-    selected-col: #e91e63;
-    text-col: #ffffff;
-    main-fg: #f38ba8;          /* Ein helleres Pink für Akzente */
+    /* Wir nutzen hier die Variablen aus der Pywal-Datei */
+    bg-col:  @background;         
+    bg-col-light: @background;
+    border-col: @color1;         /* Rosie-Pink/Hauptfarbe von Pywal */
+    selected-col: @color1;
+    text-col: @foreground;
+    main-fg: @color2;            
 
     width: 600;
     font: "JetBrains Mono 12";
@@ -21,13 +35,14 @@ window {
 
 mainbox {
     background-color: @bg-col;
+    children: [inputbar, listview];
 }
 
 inputbar {
     children: [prompt, entry];
     background-color: @bg-col;
     border-radius: 5px;
-    padding: 2px;
+    padding: 10px;
 }
 
 prompt {
@@ -35,22 +50,21 @@ prompt {
     padding: 6px;
     text-color: @bg-col;
     border-radius: 3px;
-    margin: 20px 0px 0px 20px;
+    margin: 0px;
 }
 
 entry {
     padding: 6px;
-    margin: 20px 0px 0px 10px;
     text-color: @text-col;
     background-color: @bg-col;
 }
 
 listview {
-    border: 0px 0px 0px;
-    padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
-    columns: 2;
-    lines: 5;
+    border: 0px;
+    padding: 10px;
+    margin: 10px;
+    columns: 1;
+    lines: 8;
     background-color: @bg-col;
 }
 
@@ -65,7 +79,7 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col;
+    background-color: @selected-col;
     text-color: @bg-col;
-    border-radius: 3px;
+    border-radius: 5px;
 }

@@ -9,7 +9,7 @@ configuration {
     display-drun: "   Apps ";
 }
 
-@theme "/dev/null"
+// @theme "/dev/null"
 
 * {
     bg-col:  rgba(20, 20, 30, 0.9);

@@ -1,80 +1,91 @@
 configuration {
     modi: "drun,run";
     show-icons: true;
-    display-drun: "󰀻 Apps";
+    terminal: "kitty";
     drun-display-format: "{icon} {name}";
+    display-drun: "   ";
 }
 
-/* Pywal Import */
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+/* Pywal Import für die dynamischen Farben */
+@import "~/.cache/wal/colors-rofi-pywal.rasi"
 
 * {
-    /* Wir nutzen HEX-Codes statt RGBA, um Parser-Fehler zu vermeiden */
-    rosie-bg:     #11111b;
-    rosie-pink:   @color1;
-    rosie-fg:     #ffffff;
+    /* Wir nutzen die Pywal-Variablen */
+    rosie-pink:   @color1;     /* Dein Pink */
+    rosie-bg:     @background;  /* Hintergrund von Pywal */
+    rosie-fg:     @foreground;  /* Vordergrund von Pywal */
+
+    /* Text-Sicherheit (Weiß für dunkle Hintergründe) */
+    text-white:   #ffffff;
+    text-black:   #11111b;
 
     background-color: transparent;
     font: "JetBrainsMono Nerd Font 11";
 }
 
 window {
-    width: 600px;
-    height: 400px;
+    width: 700px;              /* Etwas breiter für modernen Look */
     border: 3px;
     border-color: @rosie-pink;
     background-color: @rosie-bg;
-    border-radius: 12px;
+    border-radius: 16px;       /* Weichere Ecken */
 }
 
 mainbox {
-    padding: 20px;
+    padding: 30px;             /* Mehr Platz zum Rand */
     children: [inputbar, listview];
 }
 
 inputbar {
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 20px 0px;
+    spacing: 15px;
     children: [prompt, entry];
 }
 
 prompt {
-    padding: 10px;
+    padding: 10px 15px;
     background-color: @rosie-pink;
-    text-color: #11111b;
-    border-radius: 8px;
+    text-color: @text-black;   /* Dunkler Text auf Pink */
+    border-radius: 10px;
 }
 
 entry {
     padding: 10px;
-    text-color: @rosie-fg;
+    text-color: @text-white;   /* Weißer Text für die Eingabe */
+    placeholder: "Was suchst du, Michael?";
+    placeholder-color: #666666;
 }
 
 listview {
     columns: 1;
-    lines: 8;
+    lines: 7;
+    spacing: 8px;              /* Mehr Abstand zwischen den Apps */
     background-color: transparent;
+    fixed-height: true;
 }
 
 element {
-    padding: 8px;
-    border-radius: 8px;
+    padding: 12px;             /* Größere Klickfläche */
+    border-radius: 12px;
+    background-color: transparent;
 }
 
-/* WICHTIG: Hier wird die Schriftfarbe festgesetzt */
+/* --- WICHTIG: DER FIX FÜR DIE SCHRIFTFARBE --- */
 element-text {
-    text-color: #ffffff;
+    text-color: @text-white;   /* Erzwingt weisse Schrift für die App-Namen */
     vertical-align: 0.5;
 }
 
 element-icon {
-    size: 30px;
-    padding: 0 10px 0 0;
+    size: 35px;                /* Schön große Icons */
+    padding: 0 15px 0 0;
 }
 
 element selected {
-    background-color: @rosie-pink;
+    background-color: @rosie-pink; /* Pinker Balken bei Auswahl */
 }
 
 element-text selected {
-    text-color: #11111b;
+    text-color: @text-black;   /* Text wird dunkel, wenn Balken pink ist */
+    font: "JetBrainsMono Nerd Font Bold 11";
 }

@@ -13,9 +13,10 @@ configuration {
 @import "~/.cache/wal/colors-rofi-pywal.rasi"
 
 * {
-    /* Wir nehmen die Farbe von Pywal, erzwingen aber volle Deckkraft */
+    /* Wir erzwingen hier ein solides Dunkelblau/Schwarz als Basis */
+    /* Das verhindert, dass Rofi durchsichtig wird */
+    solider-bg:   #11111b;
     rosie-pink:   @color1;
-    rosie-bg:     @background;
 
     background-color: transparent;
     font: "JetBrainsMono Nerd Font 11";
@@ -26,16 +27,15 @@ window {
     border: 3px;
     border-color: @rosie-pink;
 
-    /* FIX: Hier wird der Hintergrund absolut blickdicht gemacht */
-    background-color: @rosie-bg;
-    opacity: 1.0;
+    /* Hier setzen wir unsere solide Farbe ein */
+    background-color: @solider-bg;
     border-radius: 12px;
 }
 
 mainbox {
     padding: 20px;
-    /* Auch hier sicherstellen, dass nichts durchscheint */
-    background-color: @rosie-bg;
+    /* Auch die Box muss solide sein */
+    background-color: @solider-bg;
     border-radius: 12px;
     children: [inputbar, listview];
 }
@@ -44,18 +44,19 @@ inputbar {
     margin: 0px 0px 15px 0px;
     spacing: 10px;
     children: [prompt, entry];
+    background-color: transparent;
 }
 
 prompt {
     padding: 8px 15px;
     background-color: @rosie-pink;
-    text-color: #11111b; /* Dunkler Text auf Pink */
+    text-color: #11111b;
     border-radius: 8px;
 }
 
 entry {
     padding: 8px;
-    text-color: #ffffff; /* Weiße Schrift beim Tippen */
+    text-color: #ffffff; /* Weisse Schrift für die Suche */
 }
 
 listview {
@@ -72,8 +73,7 @@ element {
 }
 
 element-text {
-    /* Erzwingt helle Schrift für bessere Lesbarkeit auf solidem Grund */
-    text-color: #ffffff;
+    text-color: #ffffff; /* Immer weisse Schrift */
     vertical-align: 0.5;
 }
 
@@ -87,5 +87,5 @@ element selected {
 }
 
 element-text selected {
-    text-color: #000000; /* Schwarz auf Pink bei Auswahl */
+    text-color: #11111b; /* Schwarze Schrift auf Pink */
 }

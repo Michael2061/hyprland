@@ -1,93 +1,80 @@
 configuration {
     modi: "drun,run";
     show-icons: true;
-    terminal: "kitty";
+    display-drun: "󰀻 Apps";
     drun-display-format: "{icon} {name}";
-    display-drun: "   Apps ";
 }
 
-/* Import der Pywal-Farben */
-@import "~/.cache/wal/colors-rofi-pywal.rasi"
+/* Pywal Import */
+@import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
-    /* Farben aus Pywal [cite: 9] */
-    rosie-bg:     @background;
+    /* Wir nutzen HEX-Codes statt RGBA, um Parser-Fehler zu vermeiden */
+    rosie-bg:     #11111b;
     rosie-pink:   @color1;
-    rosie-fg:     @foreground;
-
-    /* Wir erzwingen hier eine leicht transparente Hintergrundfarbe  */
-    bg-with-alpha: rgba(20, 20, 30, 0.8);
+    rosie-fg:     #ffffff;
 
     background-color: transparent;
-    font: "JetBrains Mono 12"; [cite: 10]
+    font: "JetBrainsMono Nerd Font 11";
 }
 
 window {
-    width: 600px; [cite: 10]
-    height: 450px;
-    border: 3px; [cite: 11]
+    width: 600px;
+    height: 400px;
+    border: 3px;
     border-color: @rosie-pink;
-    background-color: @bg-with-alpha; /* Nutzt Transparenz statt Vollschwarz */
-    border-radius: 15px; [cite: 11]
+    background-color: @rosie-bg;
+    border-radius: 12px;
 }
 
 mainbox {
     padding: 20px;
-    background-color: transparent;
     children: [inputbar, listview];
 }
 
 inputbar {
-    background-color: transparent;
-    children: [prompt, entry];
     margin: 0px 0px 10px 0px;
+    children: [prompt, entry];
 }
 
 prompt {
-    background-color: @rosie-pink;
     padding: 10px;
-    text-color: @rosie-bg; /* Dunkler Text auf Pink [cite: 13] */
+    background-color: @rosie-pink;
+    text-color: #11111b;
     border-radius: 8px;
 }
 
 entry {
     padding: 10px;
-    text-color: #ffffff; /* ERZWUNGEN: Weißer Text für die Suche */
-    placeholder: "Suchen...";
-    placeholder-color: @rosie-fg;
+    text-color: @rosie-fg;
 }
 
 listview {
-    columns: 1; [cite: 14]
-    lines: 8; [cite: 14]
-    fixed-height: true;
+    columns: 1;
+    lines: 8;
     background-color: transparent;
 }
 
 element {
     padding: 8px;
     border-radius: 8px;
-    background-color: transparent;
 }
 
-/* Dieser Block ist entscheidend für die Sichtbarkeit der Schrift! */
+/* WICHTIG: Hier wird die Schriftfarbe festgesetzt */
 element-text {
-    text-color: #ffffff; /* ERZWUNGEN: Weißer Text für die App-Namen */
-    background-color: transparent;
+    text-color: #ffffff;
     vertical-align: 0.5;
 }
 
 element-icon {
     size: 30px;
     padding: 0 10px 0 0;
-    background-color: transparent;
 }
 
 element selected {
     background-color: @rosie-pink;
-    border-radius: 8px;
 }
 
 element-text selected {
-    text-color: #111111; /* Dunkle Schrift auf dem pinken Auswahlbalken */
+    text-color: #11111b;
 }

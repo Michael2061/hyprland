@@ -3,103 +3,93 @@ configuration {
     show-icons: true;
     terminal: "kitty";
     drun-display-format: "{icon} {name}";
-    location: 0;
-    disable-history: false;
-    hide-scrollbar: true;
     display-drun: " 🔍 ";
 }
 
-/* WICHTIG: Hier laden wir die Pywal Farben */
+/* Pywal Import */
 @import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
-    /* Wir definieren feste Namen für die Pywal-Variablen */
+    /* Wir definieren die Farben fest basierend auf Pywal */
     rosie-bg:     @background;
-    rosie-fg:     @foreground;
     rosie-pink:   @color1;
+    rosie-fg:     @foreground;
 
-    /* Sicherheitshalber: Wenn Pywal den Text zu dunkel macht, erzwingen wir Weiß/Hellgrau */
-    text-light:   #ffffff;
-    text-dark:    #1e1e2e;
+    /* Falls Hintergrund zu dunkel/schwarz ist, nutzen wir eine leicht transparente Version */
+    bg-trans:     rgba(30, 30, 46, 0.8); /* Ein schönes Dunkelgrau/Blau als Fallback */
 
     background-color: transparent;
     font: "JetBrainsMono Nerd Font 12";
 }
 
 window {
-    width: 650px;
-    height: 400px;
+    width: 600px;
     border: 3px;
     border-color: @rosie-pink;
+    /* Hier erzwingen wir, dass der Hintergrund NICHT komplett schwarz ist */
     background-color: @rosie-bg;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 mainbox {
-    padding: 20px;
+    padding: 15px;
     children: [inputbar, listview];
+    background-color: transparent;
 }
 
 inputbar {
-    enabled: true;
-    spacing: 10px;
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 10px 0px;
     padding: 5px;
-    background-color: transparent;
     children: [prompt, entry];
 }
 
 prompt {
-    enabled: true;
-    padding: 8px 12px;
+    padding: 10px;
     background-color: @rosie-pink;
-    text-color: @rosie-bg; /* Dunkler Text auf pinkem Grund */
-    border-radius: 8px;
+    text-color: @rosie-bg;
+    border-radius: 10px;
 }
 
 entry {
-    enabled: true;
-    padding: 8px;
-    text-color: @text-light; /* HIER ERZWUNGEN: Weißer Text für die Suche */
+    padding: 10px;
+    /* Weiße Schrift für die Suche */
+    text-color: #ffffff;
     placeholder: "Suchen...";
     placeholder-color: @rosie-fg;
 }
 
 listview {
-    enabled: true;
     columns: 1;
     lines: 8;
-    cycle: true;
-    dynamic: true;
-    layout: vertical;
-    fixed-height: true;
-    fixed-columns: true;
     spacing: 5px;
+    background-color: transparent;
 }
 
 element {
-    enabled: true;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: transparent;
 }
 
+/* WICHTIG: Das hier löst dein Problem mit der Schriftfarbe */
 element-text {
-    /* HIER ERZWUNGEN: Sicherstellen, dass der Text sichtbar ist */
-    text-color: @text-light;
+    text-color: #ffffff; /* Erzwingt WEISSE SCHRIFT */
+    background-color: transparent;
     vertical-align: 0.5;
-    horizontal-align: 0.0;
 }
 
 element-icon {
-    size: 32px;
-    cursor: inherit;
+    size: 30px;
+    padding: 0 10px 0 0;
+    background-color: transparent;
 }
 
 element selected {
+    /* Der Balken wird Pink, wenn du ein Item auswählst */
     background-color: @rosie-pink;
 }
 
 element-text selected {
-    text-color: @text-dark; /* Dunkler Text auf pinkem Balken */
+    /* Wenn ausgewählt, wird die Schrift dunkel für besseren Kontrast auf Pink */
+    text-color: #111111;
 }

@@ -13,56 +13,51 @@ configuration {
 @import "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
-    /* Variablen aus Pywal zuweisen */
+    /* Pywal Variablen mit Fallback-Werten (falls Pywal schwarz-auf-schwarz liefert) */
     bg-col:       @background;
-    border-col:   @color1;     /* Das ist dein Rosie-Pink */
-    selected-col: @color1;
-    text-col:     @foreground;
+    fg-col:       @foreground;
+    rosie-pink:   @color1;
 
-    /* Schriftart anpassen (Nerd Font für Icons) */
+    /* Falls Hintergrund zu dunkel ist, erzwinge hellen Text */
     font: "JetBrainsMono Nerd Font 12";
 }
 
 window {
     width: 600px;
-    height: 450px; /* Etwas mehr Platz für die Liste */
     border: 3px;
-    border-color: @border-col;
+    border-color: @rosie-pink;
     background-color: @bg-col;
-    border-radius: 15px; /* Schönere Rundungen */
+    border-radius: 12px;
 }
 
 mainbox {
     background-color: transparent;
-    padding: 20px;
     children: [inputbar, listview];
 }
 
 inputbar {
-    children: [prompt, entry];
+    padding: 12px;
     background-color: @bg-col;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
+    children: [prompt, entry];
 }
 
 prompt {
-    background-color: @border-col;
-    padding: 8px 12px;
-    text-color: @bg-col; /* Textfarbe dunkel auf pinkem Hintergrund */
-    border-radius: 8px;
+    background-color: @rosie-pink;
+    padding: 8px;
+    /* Hier erzwingen wir, dass der Text im Prompt dunkel ist, damit er auf Pink lesbar ist */
+    text-color: @bg-col;
+    border-radius: 6px;
 }
 
 entry {
     padding: 8px;
-    text-color: @text-col;
+    /* Hier erzwingen wir hellen Text für die Suche */
+    text-color: @fg-col;
     background-color: transparent;
-    placeholder: "Suchen...";
 }
 
 listview {
-    border: 0px;
-    padding: 5px 0px 0px;
+    padding: 10px;
     columns: 1;
     lines: 8;
     background-color: transparent;
@@ -70,18 +65,19 @@ listview {
 
 element {
     padding: 8px;
+    border-radius: 6px;
     background-color: transparent;
-    text-color: @text-col;
-    border-radius: 8px;
-    margin: 2px 0px;
-}
-
-element-icon {
-    size: 32px; /* Icons etwas größer machen */
-    padding: 0px 10px 0px 0px;
+    /* Standard Textfarbe für die Liste */
+    text-color: @fg-col;
 }
 
 element selected {
-    background-color: @selected-col;
-    text-color: @bg-col; /* Damit der Text auf dem pinken Balken lesbar ist */
+    /* Wenn ausgewählt: Hintergrund Pink, Text Dunkel */
+    background-color: @rosie-pink;
+    text-color: @bg-col;
+}
+
+element-icon {
+    size: 28px;
+    padding: 0 10px 0 0;
 }

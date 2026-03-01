@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Absolute Pfade nutzen
-WALLPAPER="$HOME/.config/hypr/wallpapers/rosie.png"
+WALLPAPER="$HOME/Pictures/wallpapers/rosie.png"
 CACHE_DIR="$HOME/.cache/wal"
 
 # 1. SWWW Daemon Check

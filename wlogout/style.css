@@ -1,46 +1,41 @@
+/* 1. Pywal Farben importieren */
+@import "../../.cache/wal/colors-waybar.css";
+
 * {
-background-image: none;
-font-family: "JetBrains Mono Nerd Font", sans-serif;
+    background-image: none;
+    font-family: "JetBrains Mono Nerd Font", sans-serif;
 }
 
 window {
-    background-color: rgba(30, 30, 46, 0.85); /* Dunkler, transparenter Hintergrund */
+    /* Nutzt die Hintergrundfarbe deines Wallpapers mit Transparenz */
+    background-color: rgba(17, 17, 27, 0.85); 
 }
 
 button {
     color: #FFFFFF;
+    /* Nutzt eine leicht transparente Version deiner Akzentfarbe */
     background-color: rgba(45, 45, 63, 0.5);
-    border: 2px solid rgba(233, 30, 99, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     margin: 15px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 25%;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 button:focus, button:active, button:hover {
-    background-color: rgba(233, 30, 99, 0.4); /* Rosie-Pink beim Hover */
-    border: 2px solid #e91e63; /* Starker Rosie-Rahmen */
+    /* @color1 ist dein Rosie-Pink aus dem Wallpaper */
+    background-color: @color1; 
+    border: 2px solid @color1;
+    color: #11111b; /* Text wird dunkel auf hellem Pink */
     outline-style: none;
 }
 
-/* Icons (Diese müssen in deinem Icons-Ordner liegen) */
-#lock {
-background-image: image(url("/usr/share/wlogout/icons/lock.png"));
-}
-#logout {
-background-image: image(url("/usr/share/wlogout/icons/logout.png"));
-}
-#suspend {
-background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
-}
-#hibernate {
-background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
-}
-#shutdown {
-background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
-}
-#reboot {
-background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
-}
+/* Icons (Pfade sind korrekt für Arch Linux) */
+#lock { background-image: image(url("/usr/share/wlogout/icons/lock.png")); }
+#logout { background-image: image(url("/usr/share/wlogout/icons/logout.png")); }
+#suspend { background-image: image(url("/usr/share/wlogout/icons/suspend.png")); }
+#hibernate { background-image: image(url("/usr/share/wlogout/icons/hibernate.png")); }
+#shutdown { background-image: image(url("/usr/share/wlogout/icons/shutdown.png")); }
+#reboot { background-image: image(url("/usr/share/wlogout/icons/reboot.png")); }

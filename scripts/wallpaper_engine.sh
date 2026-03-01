@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Absolute Pfade nutzen
 WALLPAPER="$HOME/Pictures/wallpaper/rosie.png"
 CACHE_DIR="$HOME/.cache/wal"
 
@@ -10,7 +9,7 @@ if ! pgrep -x "swww-daemon" > /dev/null; then
     sleep 1
 fi
 
-# 2. Wallpaper setzen
+# 2. Wallpaper & Pywal
 if [ -f "$WALLPAPER" ]; then
     swww img "$WALLPAPER" --transition-type wipe
     wal -q -i "$WALLPAPER"
@@ -19,16 +18,18 @@ else
     exit 1
 fi
 
-# 3. Hyprland Farben Fix (Wichtig!)
+# 3. Hyprland Border-Farben Fix
+# Wir erstellen eine Datei, die Hyprland direkt als 'source' einliest
 mkdir -p "$CACHE_DIR"
-if [ -f "$CACHE_DIR/colors" ]; then
-    # Wir nehmen die zweite Zeile von Pywal (dein Pink/Akzent)
-    COLOR_VAL=$(sed -n '2p' "$CACHE_DIR/colors" | sed 's/#//')
-    echo "\$color1 = rgb($COLOR_VAL)" > "$CACHE_DIR/colors-hyprland.conf"
-fi
+{
+  echo "\$color1 = $(sed -n '2p' $CACHE_DIR/colors)"
+  echo "\$color2 = $(sed -n '3p' $CACHE_DIR/colors)"
+} > "$CACHE_DIR/colors-hyprland.conf"
 
 # 4. UI Reloads
+# Wir sagen Hyprland Bescheid und starten Waybar neu
 hyprctl reload
-killall waybar && waybar &
+killall waybar
+waybar &
 
-echo "✅ Rosie-Engine erfolgreich synchronisiert!"
+# Rofi braucht keinen Reload, es liest die Datei beim Starten

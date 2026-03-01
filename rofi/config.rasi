@@ -9,37 +9,75 @@ configuration {
     display-drun: "   Apps ";
 }
 
-// @theme "/dev/null"
+/* Importiere die echten Pywal Farben */
+@import "~/.cache/wal/colors-rofi-pywal.rasi"
 
 * {
-    bg-col:  rgba(20, 20, 30, 0.9);
-    border-col: #00ff99;
-    selected-col: rgba(0, 255, 153, 0.2);
-    fg-col: #ffffff;
-    width: 800;
+    /* Basis-Farben */
+    solider-bg:   #11111b;
+    rosie-pink:   @color1; 
+    
+    background-color: transparent;
+    font: "JetBrainsMono Nerd Font 11";
 }
 
 window {
-    border: 2px;
-    border-color: @border-col;
-    background-color: @bg-col;
-    border-radius: 20px;
+    width: 650px;
+    border: 3px;
+    border-color: @rosie-pink;
+    background-color: @solider-bg;
+    border-radius: 15px;
+}
+
+mainbox {
+    padding: 20px;
+    background-color: @solider-bg;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    margin: 0px 0px 15px 0px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    padding: 8px 15px;
+    background-color: @rosie-pink;
+    text-color: #11111b;
+    border-radius: 8px;
+}
+
+entry {
+    padding: 8px;
+    text-color: #ffffff;
 }
 
 listview {
-    columns: 3;
+    columns: 1;
     lines: 8;
-    background-color: transparent;
+    spacing: 5px;
+    fixed-height: true;
 }
 
 element {
     padding: 10px;
-    background-color: transparent;
-    text-color: @fg-col;
+    border-radius: 8px;
+}
+
+element-text {
+    text-color: #ffffff;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 32px;
+    padding: 0 12px 0 0;
 }
 
 element selected {
-    background-color: @selected-col;
-    text-color: @border-col;
-    border-radius: 10px;
+    background-color: @rosie-pink;
+}
+
+element-text selected {
+    text-color: #11111b;
 }
